@@ -1,0 +1,140 @@
+name: flutter_deer
+description: Flutter Deer
+
+version: 1.2.3+21
+# 唯鹿 <a05111993@163.com>
+homepage: https://weilu.blog.csdn.net/
+
+publish_to: 'none'
+
+environment:
+  sdk: ">=2.19.0 <3.0.0"
+  flutter: ">=3.7.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  # 去除网页URL中的“#”(hash) https://flutter.cn/docs/development/ui/navigation/url-strategies
+  url_strategy: 0.2.0
+  # Localization https://github.com/dart-lang/intl
+  intl: ^0.17.0
+  # Toast插件 https://github.com/OpenFlutter/flutter_oktoast
+  oktoast: ^3.3.1
+  # 网络库 https://github.com/cfug/diox
+  diox: ^5.0.0-dev.3
+  # https://github.com/ReactiveX/rxdart
+  rxdart: ^0.27.7
+  # Dart 常用工具类库 https://github.com/Sky24n/common_utils
+  common_utils: 2.1.0
+  sp_util: 2.0.3
+  # Flutter 常用工具类库 https://github.com/Sky24n/flustars
+  flustars_flutter3: ^3.0.0 # flustars很久不维护，可以使用这个替代
+  # Flutter 轮播图 https://github.com/mdddj/flutter_swiper_null_safety
+  flutter_swiper_null_safety_flutter3: ^3.0.0   # flutter_swiper很久不维护，可以使用这个替代
+  # 启动URL的插件（支持Web） https://github.com/flutter/plugins/tree/master/packages/url_launcher
+  url_launcher: 6.1.8
+  # 图片选择插件（支持Web） https://github.com/flutter/plugins/tree/master/packages/image_picker
+  image_picker: 0.8.6
+  # 侧滑删除 https://github.com/letsar/flutter_slidable
+  flutter_slidable: ^2.0.0
+  # WebView插件 https://github.com/flutter/plugins/tree/master/packages/webview_flutter
+  webview_flutter: 4.0.2
+  # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
+  keyboard_actions: ^4.1.0
+  # 列表悬浮头 https://github.com/fluttercommunity/flutter_sticky_headers
+  sticky_headers: ^0.3.0+2
+  # 城市选择列表 https://github.com/flutterchina/azlistview
+  azlistview: ^2.0.0
+  # 路由框架 https://github.com/theyakka/fluro
+  fluro: ^2.0.4
+  # 图片缓存 https://github.com/renefloor/flutter_cached_network_image
+  cached_network_image: ^3.2.3
+  # 格式化String https://github.com/Naddiseo/dart-sprintf
+  sprintf: ^7.0.0
+  # 状态管理 https://github.com/rrousselGit/provider
+  provider: ^6.0.5
+  # 扫码 https://github.com/juliuscanute/qr_code_scanner
+  qr_code_scanner: 1.0.0
+  #    git:
+  #      url: https://github.com/xeinebiu/qr_code_scanner.git
+  #      ref: fix_break_changes_platform
+  # App Shortcuts https://github.com/flutter/plugins/tree/master/packages/quick_actions
+  quick_actions: 1.0.1
+  # 振动 https://github.com/benjamindean/flutter_vibration
+  vibration: 1.7.6
+  vibration_web: 1.6.5
+  # 获取当前设备信息 https://github.com/fluttercommunity/plus_plugins/tree/main/packages/device_info_plus
+  device_info_plus: 8.0.0
+  # 改变桌面端窗口大小(MacOS/Linux/Windows) https://github.com/mix1009/desktop_window
+  desktop_window: 0.4.0
+  # 高德2D地图插件（支持Web） https://github.com/simplezhli/flutter_2d_amap
+  flutter_2d_amap:
+    git:
+      ref: '9e1d22ec'
+      url: 'https://github.com/simplezhli/flutter_2d_amap.git'
+  # demo 用到的库
+  # 刮刮卡 https://github.com/vintage/scratcher
+  scratcher: ^2.3.0
+  # 动画效果 https://github.com/xvrh/lottie-flutter
+  lottie: ^2.2.0
+
+# https://github.com/simplezhli/flutter_deer/issues/187
+dependency_overrides:
+  scrollable_positioned_list: ^0.3.2
+
+
+dev_dependencies:
+  # Widget测试
+  flutter_test:
+    sdk: flutter
+  # 集成测试
+  flutter_driver:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  # 黄金测试
+#  flutter_goldens:
+#    sdk: flutter
+  # 单元测试
+  test: ^1.16.8
+
+# For information on the generic Dart part of this file, see the
+# following page: https:/w.dartlang.org/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+  generate: true
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - assets/data/
+    - assets/images/
+    - assets/images/home/
+    - assets/images/store/
+    - assets/images/state/
+    - assets/images/order/
+    - assets/images/order/dark/
+    - assets/images/login/
+    - assets/images/goods/
+    - assets/images/shop/
+    - assets/images/account/
+    - assets/images/statistic/
+    - assets/lottie/
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: RobotoThin
+      fonts:
+        - asset: assets/fonts/Roboto-Thin.ttf
+
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
