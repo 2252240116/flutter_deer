@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_deer/demo/demo_page.dart';
 import 'package:flutter_deer/login/login_router.dart';
 import 'package:flutter_deer/res/constant.dart';
@@ -36,18 +37,22 @@ class _SplashPageState extends State<SplashPage> {
     //     initState
     //     didChangeDependencies
     //     build
-    //     addPostFrameCallback 页面最后一帧渲染完成。只调用一次
+    //     addPostFrameCallback 页面最后一帧渲染完成。只调用一次  相当于android里的onWindowFoucusChanged
     //     (组件状态改变)didUpdateWidget
     //     deactivate
     //     dispose
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top,SystemUiOverlay.bottom]);
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       /// 两种初始化方案，另一种见 main.dart
       /// 两种方法各有优劣
       await SpUtil.getInstance();
       await Device.initDeviceInfo();
       if (SpUtil.getBool(Constant.keyGuide, defValue: true)!) {
+
         /// 预先缓存图片，避免直接使用时因为首次加载造成闪动
         void precacheImages(String image) {
+          // 预先缓存图片
           precacheImage(ImageUtils.getAssetImage(image, format: ImageFormat.webp), context);
         }
         _guideList.forEach(precacheImages);
@@ -106,15 +111,14 @@ class _SplashPageState extends State<SplashPage> {
     return Material(
       color: context.backgroundColor,
       child: _status == 0 ?
-          //闪屏页
-      const FractionallyAlignedSizedBox(
-        heightFactor: 0.3,
-        widthFactor: 0.33,
-        leftFactor: 0.33,
-        bottomFactor: 0,
-        child: LoadAssetImage('logo')
+      //闪屏页
+      const FractionallySizedBox(
+        alignment: Alignment.bottomCenter,//FractionallySizeBox所在父布局的位置 默认Alignment.center
+        heightFactor: 0.4,//按照FractionallySizedBox的宽高比例
+        widthFactor: 0.3,
+        child: LoadAssetImage('logo',fit: BoxFit.contain,)//宽高有一个填满contain，相当于FitCenter
       ) :
-          //引导页
+      //引导页
       Swiper(
         key: const Key('swiper'),
         itemCount: _guideList.length,
@@ -123,7 +127,7 @@ class _SplashPageState extends State<SplashPage> {
           return LoadAssetImage(
             _guideList[index],
             key: Key(_guideList[index]),
-            fit: BoxFit.cover,//相当于ScaleType的CENTER_CROP
+            fit: BoxFit.cover,//相当于ScaleType的CENTER_CROP 按比例缩放 超过裁剪
             width: double.infinity,//相当于match_parent，填满
             height: double.infinity,
             format: ImageFormat.webp,
