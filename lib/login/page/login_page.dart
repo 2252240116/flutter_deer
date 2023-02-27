@@ -26,15 +26,18 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPage> {
   //定义一个controller
-  final TextEditingController _nameController = TextEditingController();//父类是ChangeNotifier
+  final TextEditingController _nameController = TextEditingController();//TextField控制器 父类是ChangeNotifier
   final TextEditingController _passwordController = TextEditingController();
-  final FocusNode _nodeText1 = FocusNode();//父类也是是ChangeNotifier
+  final FocusNode _nodeText1 = FocusNode();//TextField焦点 父类也是是ChangeNotifier
   final FocusNode _nodeText2 = FocusNode();
   bool _clickable = false;
 
   @override
   Map<ChangeNotifier, List<VoidCallback>?>? changeNotifier() {
-    final List<VoidCallback> callbacks = <VoidCallback>[_verify];
+    //VoidCallBack类型的数组
+    final List<VoidCallback> callbacks = [_verify];
+    // final List<VoidCallback> callbacks = <VoidCallback>[_verify];
+    //Map<ChangeNotifier,callBacks>
     return <ChangeNotifier, List<VoidCallback>?>{
       _nameController: callbacks,
       _passwordController: callbacks,
@@ -54,8 +57,8 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
   }
 
   void _verify() {
-    final String name = _nameController.text;
-    final String password = _passwordController.text;
+    final String name = _nameController.text;//获取TextField值
+    final String password = _passwordController.text;//获取TextField值
     bool clickable = true;
     if (name.isEmpty || name.length < 11) {
       clickable = false;
@@ -71,19 +74,22 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
       });
     }
   }
-  
+
   void _login() {
     SpUtil.putString(Constant.phone, _nameController.text);
     NavigatorUtils.push(context, StoreRouter.auditPage);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
+        // title: 'title',
+        // centerTitle: "center",
         isBack: false,
         actionName: DeerLocalizations.of(context)!.verificationCodeLogin,
         onPressed: () {
+          ///验证码登录
           NavigatorUtils.push(context, LoginRouter.smsLoginPage);
         },
       ),
@@ -122,11 +128,17 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
     Gaps.vGap24,
     MyButton(
       key: const Key('login'),
+      backgroundColor: Colors.black,
+      disabledBackgroundColor: Colors.grey,
+      radius: 24,
+      //Button通过控制onPressed为null 则不可点击
       onPressed: _clickable ? _login : null,
       text: DeerLocalizations.of(context)!.login,
     ),
+    ///忘记密码
     Container(
       height: 40.0,
+      ///alignment 摆放Container的位置
       alignment: Alignment.centerRight,
       child: GestureDetector(
         child: Text(

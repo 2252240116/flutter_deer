@@ -15,6 +15,7 @@ public class MainActivity extends FlutterActivity {
   @Override
   public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
     super.configureFlutterEngine(flutterEngine);
+    ///添加通道  纯flutter项目这样添加  像Plugin就是引入到yaml文件中
     flutterEngine.getPlugins().add(new InstallAPKPlugin(this));
   }
 

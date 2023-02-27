@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
 /// 本项目通用的布局（SingleChildScrollView）
-/// 1.底部存在按钮
-/// 2.底部没有按钮
+/// 可带底部按钮，亦可不带
 class MyScrollView extends StatelessWidget {
 
   /// 注意：同时存在底部按钮与keyboardConfig配置时，为保证软键盘弹出高度正常。需要在`Scaffold`使用 `resizeToAvoidBottomInset: defaultTargetPlatform != TargetPlatform.iOS,`
@@ -41,8 +40,9 @@ class MyScrollView extends StatelessWidget {
       children: children,
     );
 
+    //TargetPlatform判断是哪个平台 andorid ios
     if (defaultTargetPlatform == TargetPlatform.iOS && keyboardConfig != null) {
-      /// iOS 键盘处理
+      /// iOS 键盘处理  键盘不显示完成按钮，"完成"可以自定义
 
       if (padding != null) {
         contents = Padding(
@@ -50,11 +50,11 @@ class MyScrollView extends StatelessWidget {
           child: contents
         );
       }
-
+      //处理ios键盘没有完成按钮
       contents = KeyboardActions(
         isDialog: bottomButton != null,
         overscroll: overScroll,
-        config: keyboardConfig!,
+        config: keyboardConfig!,//外部基础设置
         tapOutsideBehavior: tapOutsideToDismiss ? TapOutsideBehavior.opaqueDismiss : TapOutsideBehavior.none,
         child: contents
       );

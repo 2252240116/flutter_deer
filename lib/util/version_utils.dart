@@ -1,6 +1,7 @@
 
 import 'package:flutter/services.dart';
 
+///Flutter dart代码使用通道调用原生能力
 class VersionUtils {
   static const MethodChannel _kChannel = MethodChannel('version');
 

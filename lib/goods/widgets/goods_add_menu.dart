@@ -40,16 +40,16 @@ class _GoodsAddMenuState extends State<GoodsAddMenu> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = context.backgroundColor;
+    const Color backgroundColor = Colors.blue;
     final Color? iconColor = ThemeUtils.getIconColor(context);
 
     final Widget body = Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(right: 12.0),
+        const Padding(
+          padding: EdgeInsets.only(right: 12.0),
           child: LoadAssetImage('goods/jt', width: 8.0, height: 4.0,
-            color: ThemeUtils.getDarkColor(context, Colours.dark_bg_color),
+            color: backgroundColor,
           ),
         ),
         SizedBox(

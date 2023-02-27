@@ -9,6 +9,7 @@ import Flutter
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
     let controller:FlutterViewController = window.rootViewController as! FlutterViewController
+    ///ios与android定义的共同通道version
     let versionChannel = FlutterMethodChannel(name: "version", binaryMessenger: controller as! FlutterBinaryMessenger)
     versionChannel.setMethodCallHandler { (call, result) in
         if "jumpAppStore" == call.method {

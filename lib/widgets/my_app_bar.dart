@@ -87,7 +87,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
     );
-    
+    //修改状态栏字体颜色 这里有个要求，必须包裹在头布局。而不是整体页面
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: overlayStyle,
       child: Material(

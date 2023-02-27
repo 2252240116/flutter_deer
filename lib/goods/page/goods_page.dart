@@ -77,13 +77,14 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
             IconButton(
               tooltip: '添加商品',
               key: _addKey,
+              color: Colors.blue,
               onPressed: _showAddMenu,
-              icon: LoadAssetImage(
+              icon: const LoadAssetImage(
                 'goods/add',
-                key: const Key('add'),
+                key: Key('add'),
                 width: 24.0,
                 height: 24.0,
-                color: iconColor,
+                color: Colors.red,
               ),
             )
           ],
@@ -191,14 +192,18 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
       ),
     );
   }
-
+  ///showPopupWindow()
   void _showAddMenu() {
+    ///锚点。通过GlobalKey获取
     final RenderBox button = _addKey.currentContext!.findRenderObject()! as RenderBox;
-
+    debugPrint('按钮宽高：${button.size.width},${button.size.height}');
     showPopupWindow<void>(
       context: context,
-      isShowBg: true,
-      offset: Offset(button.size.width - 8.0, -12.0),
+      isShowBg: false,//是否显示蒙层
+      // isBarrierDismissible:false,
+      // offset: Offset(button.size.width - 8.0, -12.0),
+      offset: Offset(button.size.width/2+16 , -(button.size.height/2-12)),
+      // offset: Offset(0, 0),默认在左下角
       anchor: button,
       child: const GoodsAddMenu(),
     );

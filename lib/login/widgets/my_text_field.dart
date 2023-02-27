@@ -100,7 +100,7 @@ class _MyTextFieldState extends State<MyTextField> {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final bool isDark = themeData.brightness == Brightness.dark;
-
+    ///复杂布局多个widget，可以用方法去获取，也可以用这种自定义内部widget，可读性高
     Widget textField = TextField(
       //控制TextField是否占有当前键盘的焦点，交互通过句柄handle
       focusNode: widget.focusNode,
@@ -119,24 +119,27 @@ class _MyTextFieldState extends State<MyTextField> {
       inputFormatters: (widget.keyboardType == TextInputType.number ||
               widget.keyboardType == TextInputType.phone)
           ? [FilteringTextInputFormatter.allow(RegExp('[0-9]'))]
-          : [FilteringTextInputFormatter.deny(RegExp('[\u4e00-\u9fa5]'))],
+          : [FilteringTextInputFormatter.deny(RegExp('[\u4e00-\u9fa5]'))],//'[\u4e00-\u9fa5]'表示中文
       //控制Textfield的外观
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
         hintText: widget.hintText,
         counterText: '',
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: themeData.primaryColor,
-            width: 0.8,
-          ),
-        ),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).dividerTheme.color!,
-            width: 0.8,
-          ),
-        ),
+        //去掉下划线
+        border: InputBorder.none
+        //自定义下划线
+        // focusedBorder: UnderlineInputBorder(
+        //   borderSide: BorderSide(
+        //     color: themeData.primaryColor,
+        //     width: 0.8,
+        //   ),
+        // ),
+        // enabledBorder: UnderlineInputBorder(
+        //   borderSide: BorderSide(
+        //     color: Theme.of(context).dividerTheme.color!,
+        //     width: 0.8,
+        //   ),
+        // ),
       ),
     );
 
@@ -192,6 +195,7 @@ class _MyTextFieldState extends State<MyTextField> {
       );
     }
 
+    //late 变量 用时才初始化
     late Widget getVCodeButton;
     if (widget.getVCode != null) {
       getVCodeButton = MyButton(
@@ -217,19 +221,22 @@ class _MyTextFieldState extends State<MyTextField> {
       );
     }
 
+    ///这里用Stack其实不合理
     return Stack(
       alignment: Alignment.centerRight,
       children: <Widget>[
         textField,
         Row(
+          //主轴尺寸：默认MainAxisSize.max 最大，MainAxisSize.min最小
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             /// _isShowDelete参数动态变化，为了不破坏树结构使用Visibility，false时放一个空Widget。
             /// 对于其他参数，为初始配置参数，基本可以确定树结构，就不做空Widget处理。
-            Visibility(
-              visible: _isShowDelete,
-              child: clearButton ?? Gaps.empty,
-            ),
+            // Visibility(
+            //   visible: _isShowDelete,
+            //   child: clearButton ?? Gaps.empty,
+            // ),
+            if(_isShowDelete) clearButton ?? Gaps.empty,
             if (widget.isInputPwd) Gaps.hGap15,
             if (widget.isInputPwd) pwdVisible,
             if (widget.getVCode != null) Gaps.hGap15,

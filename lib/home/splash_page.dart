@@ -41,7 +41,6 @@ class _SplashPageState extends State<SplashPage> {
     //     (组件状态改变)didUpdateWidget
     //     deactivate
     //     dispose
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top,SystemUiOverlay.bottom]);
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       /// 两种初始化方案，另一种见 main.dart
@@ -92,6 +91,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void _initSplash() {
+    //Stream.value(1)发送一个数据 delay延时
     _subscription = Stream.value(1).delay(const Duration(milliseconds: 1500)).listen((_) {
       if (SpUtil.getBool(Constant.keyGuide, defValue: true)! || Constant.isDriverTest) {
         SpUtil.putBool(Constant.keyGuide, false);

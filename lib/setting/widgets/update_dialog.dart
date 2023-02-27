@@ -96,6 +96,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
   }
 
   Widget _buildButton(BuildContext context) {
+     // var list= [Container(),Container()];
     final Color primaryColor = Theme.of(context).primaryColor;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,6 +130,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
             onPressed: () {
               if (defaultTargetPlatform == TargetPlatform.iOS) {
                 NavigatorUtils.goBack(context);
+                ///ios调整appStore
                 VersionUtils.jumpAppStore();
               } else {
                 setState(() {

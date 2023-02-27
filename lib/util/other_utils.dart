@@ -47,7 +47,7 @@ class Utils {
               onTap: () => node.unfocus(),
               child: Padding(
                 padding: const EdgeInsets.only(right: 16.0),
-                child: Text(getCurrLocale() == 'zh' ? '关闭' : 'Close'),
+                child: Text(getCurrLocale() == 'zh' ? '关闭' : 'Close'),//按钮
               ),
             );
           },
@@ -108,7 +108,7 @@ Widget _buildDialogTransitions(BuildContext context, Animation<double> animation
   );
 }
 
-/// String 空安全处理
+/// String 空安全处理扩展函数 null返回''
 extension StringExtension on String? {
   String get nullSafe => this ?? '';
 }

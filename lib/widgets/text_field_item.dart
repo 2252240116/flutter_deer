@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/util/input_formatter/number_text_input_formatter.dart';
 
-/// 封装输入框
+/// 封装输入框  左Text--右TextField + 下划线 （普通输入框）
 class TextFieldItem extends StatelessWidget {
 
   const TextFieldItem({
@@ -31,6 +31,8 @@ class TextFieldItem extends StatelessWidget {
           child: Semantics(
             label: hintText.isEmpty ? '请输入$title' : hintText,
             child: TextField(
+              ///textDirection:控制text的反向，在右边开始。默认是左边
+              textDirection: TextDirection.rtl,
               focusNode: focusNode,
               keyboardType: keyboardType,
               inputFormatters: _getInputFormatters(),
@@ -38,6 +40,7 @@ class TextFieldItem extends StatelessWidget {
               //style: TextStyles.textDark14,
               decoration: InputDecoration(
                 hintText: hintText,
+                hintTextDirection: TextDirection.rtl,
                 border: InputBorder.none, //去掉下划线
                 //hintStyle: TextStyles.textGrayC14
               ),
@@ -52,6 +55,7 @@ class TextFieldItem extends StatelessWidget {
       height: 50.0,
       margin: const EdgeInsets.only(left: 16.0),
       width: double.infinity,
+      ///通过Container添加下划线
       decoration: BoxDecoration(
         border: Border(
           //Container下划线

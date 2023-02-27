@@ -18,7 +18,7 @@ class MyButton extends StatelessWidget {
     this.minHeight = 48.0,
     this.minWidth = double.infinity,
     this.padding = const EdgeInsets.symmetric(horizontal: 16.0),
-    this.radius = 2.0,
+    this.radius = 0.0,
     this.side = BorderSide.none,
     required this.onPressed,
     // required this.b,
@@ -62,7 +62,7 @@ class MyButton extends StatelessWidget {
         ),
         // 背景颜色
         backgroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.disabled)) {
+          if (states.contains(MaterialState.disabled)) {//MaterialState获取是否可点击
             return disabledBackgroundColor ?? (isDark ? Colours.dark_button_disabled : Colours.button_disabled);
           }
           return backgroundColor ?? (isDark ? Colours.dark_app_main : Colours.app_main);
@@ -74,6 +74,7 @@ class MyButton extends StatelessWidget {
         // 按钮最小大小
         minimumSize: (minWidth == null || minHeight == null) ? null : MaterialStateProperty.all<Size>(Size(minWidth!, minHeight!)),
         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(padding),
+        //shape 圆角 默认为0
         shape: MaterialStateProperty.all<OutlinedBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radius),

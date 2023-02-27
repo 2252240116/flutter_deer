@@ -22,9 +22,9 @@ class _StoreAuditResultPageState extends State<StoreAuditResultPage> {
       appBar: const MyAppBar(
         title: '审核结果',
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Center(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Gaps.vGap50,
             const LoadAssetImage('store/icon_success',
@@ -48,6 +48,10 @@ class _StoreAuditResultPageState extends State<StoreAuditResultPage> {
             ),
             Gaps.vGap24,
             MyButton(
+              minHeight: 30,
+              minWidth: 75,
+              fontSize: 16,
+              radius: 15,
               onPressed: () {
                 NavigatorUtils.push(context, Routes.home, clearStack: true);
               },

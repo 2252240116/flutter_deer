@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'dimens.dart';
 
+//自定义TextStyle
 class TextStyles {
   
   static const TextStyle textSize12 = TextStyle(

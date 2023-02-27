@@ -38,6 +38,7 @@ class SelectedItem extends StatelessWidget {
             Expanded(
               child: Text(
                 content,
+                textDirection: TextDirection.rtl,
                 maxLines: 2,
                 textAlign: textAlign,
                 overflow: TextOverflow.ellipsis,

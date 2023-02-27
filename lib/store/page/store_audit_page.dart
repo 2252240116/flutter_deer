@@ -17,7 +17,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
 
-/// design/2店铺审核/index.html
+/// 店铺审核资料
 class StoreAuditPage extends StatefulWidget {
 
   const StoreAuditPage({super.key});
@@ -89,7 +89,7 @@ class _StoreAuditPageState extends State<StoreAuditPage> {
         ),
         children: _buildBody(),
       ),
-      /// 同时存在底部按钮与keyboardConfig配置时，为保证Android与iOS平台软键盘弹出高度正常，添加下面的代码。
+      /// 同时存在底部按钮与keyboardConfig配置时，为保证Android与iOS平台 软键盘弹出高度正常
       resizeToAvoidBottomInset: defaultTargetPlatform != TargetPlatform.iOS,
     );
   }

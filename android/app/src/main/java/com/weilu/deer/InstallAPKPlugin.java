@@ -45,7 +45,7 @@ public class InstallAPKPlugin implements FlutterPlugin {
   }
 
   /**
-   * 安装 文件（APK）
+   * 安装 文件（APK）  原生安装
    */
   private void openFile(String path) {
     Intent intents = new Intent();

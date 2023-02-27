@@ -125,6 +125,7 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
+  ///版本升级弹窗
   void _showUpdateDialog() {
     showDialog<void>(
       context: context,

@@ -73,6 +73,7 @@ class _SMSLoginPageState extends State<SMSLoginPage> with ChangeNotifierMixin<SM
     );
   }
 
+  ///返回Widget[]
   List<Widget> _buildBody() {
     return <Widget>[
       Text(
@@ -101,10 +102,11 @@ class _SMSLoginPageState extends State<SMSLoginPage> with ChangeNotifierMixin<SM
       ),
       Gaps.vGap8,
       Container(
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.center,
+        //富文本 RichText text :TextSpan套TextSpan
         child: RichText(
           text: TextSpan(
-            text: DeerLocalizations.of(context)!.registeredTips,
+            text: "Containter alignment : Alignment.centerLeft,富文本测试，请先",
             style: Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: Dimens.font_sp14),
             children: <TextSpan>[
               TextSpan(

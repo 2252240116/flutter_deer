@@ -67,6 +67,7 @@ class ThemeUtils {
   }
 }
 
+///在context上的扩展函数
 extension ThemeExtension on BuildContext {
   bool get isDark => ThemeUtils.isDark(this);
   Color get backgroundColor => Theme.of(this).scaffoldBackgroundColor;

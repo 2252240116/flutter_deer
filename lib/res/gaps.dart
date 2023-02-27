@@ -40,8 +40,10 @@ class Gaps {
     height: 24.0,
     child: VerticalDivider(),
   );
-  
-  static const Widget empty = SizedBox.shrink();
+
+  // SizedBox.shrink();最小尺寸 w h 0.0,,可以放child
+  // SizeBox.expand;最大尺寸 无穷大 double.infinity
+  static const Widget empty = SizedBox.expand();
 
   /// 补充一种空Widget实现 https://github.com/letsar/nil
   /// https://github.com/flutter/flutter/issues/78159

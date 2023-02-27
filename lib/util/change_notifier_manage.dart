@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 /// @weilu https://github.com/simplezhli/flutter_deer
 /// 
-/// 便于管理ChangeNotifier，不用重复写模板代码。
+/// 便于管理ChangeNotifier，不用重复写模板代码。（ChangeNotifier添加监听和移除监听的代码）
 /// 之前：
 /// ```dart
 /// class TestPageState extends State<TestPage> {
@@ -39,8 +39,8 @@ import 'package:flutter/widgets.dart';
 ///   }
 /// }
 /// ```
-/// mixin是在无需继承父类的情况下为父类添加功能
-/// on限定词
+///  mixin是在无需继承父类的情况下为父类添加功能
+///  on限定词
 mixin ChangeNotifierMixin<T extends StatefulWidget> on State<T> {
 
   Map<ChangeNotifier?, List<VoidCallback>?>? _map;
@@ -49,7 +49,7 @@ mixin ChangeNotifierMixin<T extends StatefulWidget> on State<T> {
   
   @override
   void initState() {
-    _map = changeNotifier();
+    _map = changeNotifier();//方法赋值给map,具体在widget页面里返回
     /// 遍历数据，如果callbacks不为空则添加监听
     _map?.forEach((changeNotifier, callbacks) { 
       if (callbacks != null && callbacks.isNotEmpty) {

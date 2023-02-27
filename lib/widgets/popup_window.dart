@@ -19,6 +19,7 @@ Future<T?> showPopupWindow<T>({
   Offset? offset,
   String? semanticLabel,
   bool isShowBg = false,
+  bool isBarrierDismissible = true,
 }) {
 
   switch (defaultTargetPlatform) {
@@ -55,7 +56,8 @@ Future<T?> showPopupWindow<T>({
         child: child,
         semanticLabel: semanticLabel,
         barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-        isShowBg: isShowBg
+        isShowBg: isShowBg,
+          isBarrierDismissible:isBarrierDismissible
       ));
 }
 
@@ -68,18 +70,20 @@ class _PopupWindowRoute<T> extends PopupRoute<T> {
     required this.barrierLabel,
     required this.semanticLabel,
     required this.isShowBg,
+    required this.isBarrierDismissible
   });
 
   final Widget child;
   final RelativeRect position;
   final String? semanticLabel;
   final bool isShowBg;
-  
+  final bool isBarrierDismissible;
+
   @override
   Color? get barrierColor => null;
 
   @override
-  bool get barrierDismissible => true;
+  bool get barrierDismissible => isBarrierDismissible;
 
   @override
   final String barrierLabel;

@@ -43,8 +43,8 @@ class BaseDialog extends StatelessWidget {
         ),
         const SizedBox(
           height: 48.0,
-          width: 0.6,
-          child: VerticalDivider(),
+          width: 100,
+          child: VerticalDivider(color: Color(0xFF4688FA),width: 0.1,),
         ),
         _DialogButton(
           text: '确定',
@@ -77,7 +77,7 @@ class BaseDialog extends StatelessWidget {
       context: context,
       child: Center(
         child: SizedBox(
-          width: 270.0,
+          width: 0.6,
           child: content,
         ),
       ),
