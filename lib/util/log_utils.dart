@@ -27,6 +27,9 @@ class Log {
   static void json(String msg, {String tag = tag}) {
     if (!Constant.inProduction) {
       try {
+        ///dynamic  var  Object
+        ///dynamic 动态的。会避开编译期类型检查
+        ///Object 编译器就会类型检查，会报错。var 并不关心你是什么类型，编译器就会自动推导类型。
         final dynamic data = convert.json.decode(msg);
         if (data is Map) {
           _printMap(data);

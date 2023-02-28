@@ -46,6 +46,8 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
     };
   }
 
+
+  ///1.初始化state
   @override
   void initState() {
     super.initState();
@@ -54,6 +56,28 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     });
     _nameController.text = SpUtil.getString(Constant.phone).nullSafe;
+  }
+
+  ///2.initState之后 State对象 依赖关系发生变化
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  ///3.State被暂时移除Widget时。相当于android的onPause
+  @override
+  void deactivate() {
+    super.deactivate();
+  }
+  ///4.Widget销毁时
+  @override
+  void dispose() {
+    super.dispose();
+  }
+  ///Widget状态发生变化。setState-->build
+  @override
+  void didUpdateWidget(covariant LoginPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
   }
 
   void _verify() {

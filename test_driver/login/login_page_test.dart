@@ -36,12 +36,12 @@ void main() {
 
     test('注册页测试',() async {
       await driver.tap(find.byValueKey('getVerificationCode'));/// 无法成功触发事件，需要输入手机号
-      
+      ///通过GlobalKey找到Widget 主动触发操作
       final SerializableFinder textField = find.byValueKey('phone');
       await driver.tap(textField);  // 点击输入框，给予焦点
       await driver.enterText('15000000000');  // 输入内容
       await delayed();
-      
+
       await driver.tap(find.byValueKey('getVerificationCode'));
 
       final SerializableFinder textField2 = find.byValueKey('vcode');

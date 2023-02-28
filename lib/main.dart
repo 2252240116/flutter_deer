@@ -26,6 +26,8 @@ import 'package:sp_util/sp_util.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'home/home_page.dart';
+
+///main程序入口函数
 Future<void> main() async {
 //  debugProfileBuildsEnabled = true;
 //  debugPaintLayerBordersEnabled = true;
@@ -48,7 +50,7 @@ Future<void> main() async {
   // GestureBinding.instance?.resamplingEnabled = true;
 
   /// 异常处理
-  handleError(() => runApp(MyApp()));
+  handleError(() => runApp(MyApp()));///runApp().渲染Widget根Widget的函数
 
   /// 隐藏状态栏。为启动页、引导页设置。完成后修改回显示状态栏。
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
