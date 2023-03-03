@@ -20,6 +20,7 @@ class LoginPage extends StatefulWidget {
 
   const LoginPage({super.key});
 
+  ///0.创建一个State.
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -51,14 +52,33 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
   @override
   void initState() {
     super.initState();
+    Future.delayed(const Duration(microseconds: 500), () {
+      //initState 此时State与BuildContext产生关联，但context并未形成，可以通过Future.delayed方法获取context
+      context;
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       /// 显示状态栏和导航栏
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     });
     _nameController.text = SpUtil.getString(Constant.phone).nullSafe;
+
+    SystemChannels.lifecycle.setMessageHandler((msg) async {
+      if (msg == AppLifecycleState.resumed.toString()) {
+        debugPrint(msg);
+      } else if (msg == AppLifecycleState.inactive.toString()) {
+
+      } else if (msg == AppLifecycleState.paused.toString()) {
+
+      } else if (msg == AppLifecycleState.detached.toString()) {
+
+      }
+      debugPrint('管理生命周期：$msg');
+      return "";
+    });
   }
 
-  ///2.initState之后 State对象 依赖关系发生变化
+  ///2.initState之后 State对象 依赖关系发生变化。父类树的节点发生变化会调用，值变化不会
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -74,7 +94,7 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
   void dispose() {
     super.dispose();
   }
-  ///Widget状态发生变化。setState-->build
+  ///Widget状态发生变化。setState-->build 会通知子类调用这个方法
   @override
   void didUpdateWidget(covariant LoginPage oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -104,6 +124,7 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
     NavigatorUtils.push(context, StoreRouter.auditPage);
   }
 
+  ///构建一个Widget setState{}更新build
   @override
   Widget build(BuildContext context) {
     return Scaffold(

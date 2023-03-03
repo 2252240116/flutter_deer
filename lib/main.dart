@@ -27,6 +27,12 @@ import 'package:url_strategy/url_strategy.dart';
 
 import 'home/home_page.dart';
 
+///Dart支持顶层变量和方法
+@override var aa = 1;
+void aaa(){
+
+}
+
 ///main程序入口函数
 Future<void> main() async {
 //  debugProfileBuildsEnabled = true;
@@ -50,6 +56,7 @@ Future<void> main() async {
   // GestureBinding.instance?.resamplingEnabled = true;
 
   /// 异常处理
+  /// runApp本质是WidgetFlutterBindings 继承了BindingBase 和mixin各种Binding
   handleError(() => runApp(MyApp()));///runApp().渲染Widget根Widget的函数
 
   /// 隐藏状态栏。为启动页、引导页设置。完成后修改回显示状态栏。
